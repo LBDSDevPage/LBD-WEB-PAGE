@@ -111,6 +111,23 @@ function getCurrentConfig() {
   return map[category] || map.audios;
 }
 
+function getFileName(entry) {
+  if (!entry) return "";
+  const parts = String(entry).split("/").filter(Boolean);
+  return parts.length ? parts[parts.length - 1] : String(entry);
+}
+
+function normalizeSourcePath(entry, folder) {
+  if (!entry) return "";
+  try {
+    const baseUrl = new URL(folder, window.location.href);
+    const resolvedUrl = new URL(entry, baseUrl).href;
+    return encodeURI(resolvedUrl);
+  } catch (e) {
+    return encodeURI(entry);
+  }
+}
+
 function goToFile(item) {
   if (!item) return;
   // Asegura espacios y caracteres especiales en URL
@@ -252,9 +269,11 @@ function renderPreview(item) {
 
 function applySearch() {
   const query = (audioSearch?.value || "").trim().toLowerCase();
-  mediaState.filtered = mediaState.all.filter((item) =>
-    item.name.toLowerCase().includes(query),
-  );
+  mediaState.filtered = mediaState.all.filter((item) => {
+    const searchSource =
+      `${item.name} ${item.rawSrc} ${item.folder || ""}`.toLowerCase();
+    return searchSource.includes(query);
+  });
   renderItems(mediaState.filtered);
 }
 
@@ -290,34 +309,45 @@ async function loadManifest() {
   }
 
   try {
+    const manifestUrl = new URL(config.manifest, window.location.href).href;
+    const folderUrl = new URL(config.folder, window.location.href).href;
+
     console.log(
       "loadManifest: category=",
       getCurrentCategory(),
       "manifest=",
-      config.manifest,
+      manifestUrl,
       "folder=",
-      config.folder,
+      folderUrl,
     );
-    const response = await fetch(config.manifest);
+
+    const response = await fetch(manifestUrl);
     if (!response.ok) throw new Error("No hay manifest");
     const names = await response.json();
     if (!Array.isArray(names)) throw new Error("Formato inválido");
     console.log("manifest loaded. items=", names.length);
 
     mediaState.all = names
-      .filter(
-        (entry) =>
-          typeof entry === "string" &&
-          config.extensions.some((ext) => entry.toLowerCase().endsWith(ext)),
-      )
+      .filter((entry) => {
+        if (typeof entry !== "string") return false;
+        const cleanEntry = entry.trim();
+        return config.extensions.some((ext) =>
+          cleanEntry.toLowerCase().endsWith(ext),
+        );
+      })
       .map((entry) => {
-        const name = normalizeFilename(entry);
-        const baseSrc = `${config.folder}${name}`;
-        const src = encodeURI(baseSrc);
+        const cleanEntry = String(entry).trim();
+        const name = normalizeFilename(getFileName(cleanEntry));
+        const src = normalizeSourcePath(cleanEntry, folderUrl);
+        const folderPath = cleanEntry.includes("/")
+          ? cleanEntry.substring(0, cleanEntry.lastIndexOf("/"))
+          : "";
+
         return {
           name,
           src,
-          rawSrc: baseSrc,
+          rawSrc: cleanEntry,
+          folder: folderPath,
           type: getFileTypeFromName(name),
         };
       });
