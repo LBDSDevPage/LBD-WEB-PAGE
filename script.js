@@ -121,10 +121,11 @@ function normalizeSourcePath(entry, folder) {
   if (!entry) return "";
   try {
     const baseUrl = new URL(folder, window.location.href);
-    const resolvedUrl = new URL(entry, baseUrl).href;
-    return encodeURI(resolvedUrl);
+    // Codifica solo el nombre del archivo, no la URL completa
+    const encodedEntry = entry.split("/").map(encodeURIComponent).join("/");
+    return new URL(encodedEntry, baseUrl).href;
   } catch (e) {
-    return encodeURI(entry);
+    return folder + entry.split("/").map(encodeURIComponent).join("/");
   }
 }
 
