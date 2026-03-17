@@ -1,1 +1,38 @@
+name: Generar manifests JSON
 
+on:
+  push:
+    branches: [main]
+    paths:
+      - "Audios/Pistas/**"
+      - "Media/Presentaciones/**"
+      - "Partituras/Corario/**"
+      - "manifest.py"
+  workflow_dispatch: # permite correrlo manualmente desde GitHub
+
+jobs:
+  generar:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write # necesario para hacer commit de los JSON
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generar los archivos JSON
+        run: python manifest.py
+
+      - name: Commit y push de los JSON generados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Audios/Pistas/audios.json Media/Presentaciones/presentaciones.json Partituras/Corario/corario.json
+          git diff --cached --quiet || git commit -m "chore: actualizar manifests JSON [skip ci]"
+          git push
