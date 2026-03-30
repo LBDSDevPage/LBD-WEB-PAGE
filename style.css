@@ -563,6 +563,14 @@ footer a {
     flex-wrap: wrap;
   }
 
+  .nav-links {
+    position: absolute;
+    top: 100%; /* Se ancla justo debajo del nav */
+    left: 0;
+    transform: none; /* Cancela el translateX del estado base */
+    width: 100%;
+  }
+
   /* Toggle visible, links ocultos por defecto */
   .nav-toggle {
     display: block;
