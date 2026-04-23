@@ -52,13 +52,11 @@ const audioCount = document.getElementById("audio-count");
 const mediaTitle = document.getElementById("media-title");
 const mediaSubtitle = document.getElementById("media-subtitle");
 const mediaPreview = document.getElementById("media-preview");
-const sortBtn = document.getElementById("sort-btn");
 
 let mediaState = {
   category: "audios",
   all: [],
   filtered: [],
-  sortedAsc: true,
 };
 
 function normalizeFilename(filename) {
@@ -265,29 +263,14 @@ function renderPreview(item) {
 
 function applySearch() {
   const query = (audioSearch?.value || "").trim().toLowerCase();
-  mediaState.filtered = mediaState.all.filter((item) => {
+  const results = mediaState.all.filter((item) => {
     const searchSource =
       `${item.name} ${item.rawSrc} ${item.folder || ""}`.toLowerCase();
     return searchSource.includes(query);
   });
+  // Siempre ordenado alfabéticamente al buscar
+  mediaState.filtered = sortAlphabetically(results);
   renderItems(mediaState.filtered);
-}
-
-function sortItems() {
-  mediaState.sortedAsc = !mediaState.sortedAsc;
-  if (sortBtn)
-    sortBtn.textContent = mediaState.sortedAsc
-      ? "Ordenar A → Z"
-      : "Ordenar Z → A";
-
-  const base = mediaState.filtered.length
-    ? mediaState.filtered
-    : mediaState.all;
-  const sorted = sortAlphabetically(base);
-  if (!mediaState.sortedAsc) sorted.reverse();
-
-  mediaState.filtered = sorted;
-  renderItems(sorted);
 }
 
 async function loadManifest() {
@@ -349,7 +332,7 @@ async function loadManifest() {
         };
       });
 
-    // Orden alfabético insensible a mayúsculas desde el inicio
+    // Orden alfabético automático al cargar
     mediaState.all = sortAlphabetically(raw);
     mediaState.filtered = mediaState.all;
     renderItems(mediaState.filtered);
@@ -364,6 +347,5 @@ async function loadManifest() {
 }
 
 if (audioSearch) audioSearch.addEventListener("input", applySearch);
-if (sortBtn) sortBtn.addEventListener("click", sortItems);
 
 loadManifest();
