@@ -580,6 +580,47 @@ footer a:hover::after {
   display: none !important;
 }
 
+.audios-page {
+  padding: 20px;
+  background: var(--gray-mid);
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+.audios-page h2 {
+  font-family: var(--font-h);
+  font-size: 22px;
+  color: var(--black);
+}
+
+.audios-search {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--gray-light);
+  padding: 10px 16px;
+  border-radius: 12px;
+}
+
+.audios-search p,
+.audios-search input {
+  width: 100%;
+  max-width: 400px;
+  align-items: left;
+  font-size: 14px;
+  color: var(--gray-text);
+}
+
+.audios-page:hover {
+  box-shadow: var(--shadow-gl);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
 /* ── RESPONSIVE: 768px ── */
 @media (max-width: 768px) {
   body {

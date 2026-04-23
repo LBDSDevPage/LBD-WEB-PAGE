@@ -47,7 +47,6 @@ if (navToggle && navLinks) {
 // ── CATÁLOGO MULTIMEDIA ──────────────────────────────────────────────────────
 const mediaType = document.getElementById("media-type");
 const audioSearch = document.getElementById("audio-search");
-const sortBtn = document.getElementById("sort-btn");
 const audioResults = document.getElementById("audio-results");
 const audioCount = document.getElementById("audio-count");
 const mediaTitle = document.getElementById("media-title");
@@ -75,21 +74,11 @@ function getFileTypeFromName(name) {
   return "unknown";
 }
 
-function insertionSortByFirstAscii(items) {
-  const sorted = [...items];
-  for (let i = 1; i < sorted.length; i += 1) {
-    const current = sorted[i];
-    let j = i - 1;
-    while (
-      j >= 0 &&
-      (sorted[j].name.charCodeAt(0) || 0) > (current.name.charCodeAt(0) || 0)
-    ) {
-      sorted[j + 1] = sorted[j];
-      j -= 1;
-    }
-    sorted[j + 1] = current;
-  }
-  return sorted;
+// ── ORDENAMIENTO ALFABÉTICO INSENSIBLE A MAYÚSCULAS/MINÚSCULAS ───────────────
+function sortAlphabetically(items) {
+  return [...items].sort((a, b) =>
+    a.name.toUpperCase().localeCompare(b.name.toUpperCase()),
+  );
 }
 
 function getCurrentCategory() {
@@ -105,7 +94,6 @@ function getCurrentConfig() {
   const map = {
     audios: {
       label: "Audios LBDS",
-      subtitle: "Busca y ordena tus archivos mp3.",
       manifest: "/LBD-WEB-PAGE/Audios/Pistas/audios.json",
       folder: "/LBD-WEB-PAGE/Audios/Pistas/",
       extensions: [".mp3"],
@@ -114,7 +102,6 @@ function getCurrentConfig() {
     },
     presentaciones: {
       label: "Presentaciones",
-      subtitle: "Busca y ordena tus presentaciones en MP4 o PPTX.",
       manifest: "/LBD-WEB-PAGE/Media/Presentaciones/presentaciones.json",
       folder: "/LBD-WEB-PAGE/Media/Presentaciones/",
       extensions: [".mp4", ".pptx"],
@@ -123,7 +110,6 @@ function getCurrentConfig() {
     },
     corario: {
       label: "Corario",
-      subtitle: "Busca y ordena tus partituras en PDF o DOC(S).",
       manifest: "/LBD-WEB-PAGE/Partituras/Corario/corario.json",
       folder: "/LBD-WEB-PAGE/Partituras/Corario/",
       extensions: [".pdf", ".doc", ".docx"],
@@ -161,8 +147,7 @@ function renderItems(items) {
   audioResults.innerHTML = "";
 
   if (!items.length) {
-    audioResults.innerHTML =
-      "<p>No se encontraron elementos. Verifica el JSON de configuración y los archivos de la carpeta.</p>";
+    audioResults.innerHTML = "<p>Error al cargar los elementos.</p>";
     if (audioCount) audioCount.textContent = "0 elementos encontrados";
     return;
   }
@@ -294,9 +279,10 @@ function sortItems() {
       ? "Ordenar A → Z"
       : "Ordenar Z → A";
 
-  const sorted = insertionSortByFirstAscii(
-    mediaState.filtered.length ? mediaState.filtered : mediaState.all,
-  );
+  const base = mediaState.filtered.length
+    ? mediaState.filtered
+    : mediaState.all;
+  const sorted = sortAlphabetically(base);
   if (!mediaState.sortedAsc) sorted.reverse();
 
   mediaState.filtered = sorted;
@@ -338,7 +324,7 @@ async function loadManifest() {
     if (!Array.isArray(names)) throw new Error("Formato inválido");
     console.log("manifest loaded. items=", names.length);
 
-    mediaState.all = names
+    const raw = names
       .filter((entry) => {
         if (typeof entry !== "string") return false;
         const cleanEntry = entry.trim();
@@ -362,6 +348,8 @@ async function loadManifest() {
         };
       });
 
+    // Orden alfabético insensible a mayúsculas desde el inicio
+    mediaState.all = sortAlphabetically(raw);
     mediaState.filtered = mediaState.all;
     renderItems(mediaState.filtered);
   } catch (err) {
@@ -373,14 +361,6 @@ async function loadManifest() {
     console.error("loadManifest error:", err);
   }
 }
-
-if (mediaType)
-  mediaType.addEventListener("change", () => {
-    mediaState.category = mediaType.value;
-    mediaState.sortedAsc = true;
-    if (sortBtn) sortBtn.textContent = "Ordenar A → Z";
-    loadManifest();
-  });
 
 if (audioSearch) audioSearch.addEventListener("input", applySearch);
 if (sortBtn) sortBtn.addEventListener("click", sortItems);
