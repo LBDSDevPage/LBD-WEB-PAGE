@@ -52,6 +52,7 @@ const audioCount = document.getElementById("audio-count");
 const mediaTitle = document.getElementById("media-title");
 const mediaSubtitle = document.getElementById("media-subtitle");
 const mediaPreview = document.getElementById("media-preview");
+const sortBtn = document.getElementById("sort-btn");
 
 let mediaState = {
   category: "audios",
