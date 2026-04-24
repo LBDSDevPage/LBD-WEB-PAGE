@@ -146,7 +146,7 @@ function renderItems(items) {
   audioResults.innerHTML = "";
 
   if (!items.length) {
-    audioResults.innerHTML = "<p>Error al cargar los elementos.</p>";
+    audioResults.innerHTML = "<p>Error 404 (Not Found).</p>";
     if (audioCount) audioCount.textContent = "0 elementos encontrados";
     return;
   }
@@ -172,7 +172,7 @@ function renderItems(items) {
     } else {
       const openButton = document.createElement("button");
       openButton.type = "button";
-      openButton.textContent = "Abrir aquí";
+      openButton.textContent = "Abrir";
       openButton.className = "btn-out";
       openButton.addEventListener("click", () => goToFile(item));
       template.append(openButton);
