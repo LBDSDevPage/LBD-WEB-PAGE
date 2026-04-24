@@ -1,5 +1,5 @@
 /* ============================================
-   ILBD — styles.css (MEJORADO)
+   ILBD — styles.css (RESPONSIVE MEJORADO)
    ============================================ */
 /* ── RESET & BASE ── */
 *,
@@ -50,7 +50,7 @@ img {
   max-width: 100%;
 }
 
-/* ── HEADER & NAV (MEJORADO) ── */
+/* ── HEADER & NAV ── */
 header {
   position: fixed;
   top: 10px;
@@ -124,10 +124,6 @@ nav h1:hover {
   justify-self: end;
 }
 
-.nav-links.open {
-  display: flex;
-}
-
 .nav-toggle {
   display: none;
   background: none;
@@ -137,6 +133,8 @@ nav h1:hover {
   color: inherit;
   padding: 4px 8px;
   line-height: 1;
+  justify-self: end;
+  z-index: 10;
 }
 
 .nav-item {
@@ -190,7 +188,7 @@ nav h1:hover {
   cursor: pointer;
 }
 
-/* ── HERO (MEJORADO) ── */
+/* ── HERO ── */
 .hero {
   position: relative;
   width: 100%;
@@ -310,7 +308,7 @@ nav h1:hover {
   border-radius: 10px;
 }
 
-/* ── CONTENEDOR ── */
+/* ── CANCIONES ── */
 #canciones {
   display: flex;
   flex-direction: row;
@@ -320,7 +318,6 @@ nav h1:hover {
   margin-top: 32px;
 }
 
-/* ── CARD ── */
 .canciones {
   display: flex;
   flex-direction: column;
@@ -332,7 +329,6 @@ nav h1:hover {
   color: inherit;
 }
 
-/* ── IMAGEN ── */
 .canciones img {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -349,7 +345,6 @@ nav h1:hover {
   filter: brightness(0.92);
 }
 
-/* ── BOTÓN ── */
 .canciones-btn {
   font-family: var(--font-h);
   font-size: 14px;
@@ -381,7 +376,7 @@ nav h1:hover {
   transform: translateY(0);
 }
 
-/* ── VISIÓN Y MISIÓN (MEJORADO) ── */
+/* ── VISIÓN Y MISIÓN ── */
 .vm {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -435,7 +430,7 @@ nav h1:hover {
   color: var(--black);
 }
 
-/* ── CONTACTO (MEJORADO) ── */
+/* ── CONTACTO ── */
 .contacto {
   background: var(--white);
   padding: 60px 40px;
@@ -538,7 +533,7 @@ nav h1:hover {
   transform: scale(1.02);
 }
 
-/* ── FOOTER (MEJORADO) ── */
+/* ── FOOTER ── */
 footer {
   background: var(--white);
   border-top: 1px solid var(--gray-mid);
@@ -699,13 +694,6 @@ footer a:hover::after {
   transform: translateY(-2px);
 }
 
-/* ── AUDIO LIST & ITEMS ── */
-.audio-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
 .audio-item {
   display: flex;
   flex-direction: column;
@@ -728,6 +716,7 @@ footer a:hover::after {
   background: var(--black);
   color: var(--white);
 }
+
 .audio-item-header {
   display: flex;
   flex-direction: row;
@@ -753,7 +742,6 @@ footer a:hover::after {
   color: var(--white);
 }
 
-/* ── TÍTULO DEL ITEM ── */
 .audio-item h3 {
   font-family: var(--font-b);
   font-size: 18px;
@@ -772,7 +760,6 @@ footer a:hover::after {
   color: var(--black);
 }
 
-/* ── BOTÓN ABRIR ── */
 .btn-out {
   font-family: var(--font-h);
   font-size: 12px;
@@ -800,7 +787,6 @@ footer a:hover::after {
   transform: scale(0.97);
 }
 
-/* ── AUDIO PLAYER INLINE ── */
 .audio-item audio {
   flex-shrink: 0;
   width: 220px;
@@ -809,7 +795,6 @@ footer a:hover::after {
   accent-color: var(--accent);
 }
 
-/* ── VIDEO INLINE ── */
 .audio-item video {
   width: 100%;
   max-width: 480px;
@@ -817,7 +802,6 @@ footer a:hover::after {
   margin-top: 8px;
 }
 
-/* ── MEDIA PREVIEW (panel expandido) ── */
 .media-preview {
   background: var(--white);
   border: 1px solid var(--gray-mid);
@@ -887,7 +871,6 @@ footer a:hover::after {
   align-self: flex-start;
 }
 
-/* ── MENSAJE DE ERROR ── */
 .error-msg {
   font-family: var(--font-b);
   font-size: 14px;
@@ -899,37 +882,182 @@ footer a:hover::after {
   border: 1px solid var(--gray-mid);
 }
 
-/* ── RESPONSIVE: 768px ── */
-@media (max-width: 768px) {
-  body {
-    padding-top: 90px;
-  }
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 
-  header {
-    top: 10px;
-  }
-
+/* ── 1024px: tablets landscape ── */
+@media (max-width: 1024px) {
   nav {
-    grid-template-columns: auto 1fr;
-    height: 60px;
-    padding: 0 20px;
-  }
-
-  nav h1 {
-    font-size: 18px;
-    grid-column: 1 / -1;
-    margin-top: 8px;
+    padding: 0 24px;
+    gap: 12px;
   }
 
   .nav-logo {
     margin-left: 10px;
-    height: 40px;
+    height: 44px;
   }
 
+  nav h1 {
+    font-size: 20px;
+  }
+
+  .vm-col {
+    padding: 40px 40px;
+  }
+
+  #canciones {
+    gap: 8px;
+  }
+
+  .canciones-btn {
+    font-size: 12px;
+    padding: 14px 8px;
+  }
+}
+
+/* ── 768px: tablets portrait ── */
+@media (max-width: 768px) {
+  html {
+    width: calc(100% - 16px);
+  }
+
+  body {
+    padding: 8px;
+    padding-top: 90px;
+  }
+
+  /* Nav: ocultar links, mostrar toggle */
+  header {
+    top: 8px;
+    width: calc(100% - 16px);
+  }
+
+  nav {
+    grid-template-columns: auto 1fr auto;
+    height: auto;
+    min-height: 64px;
+    padding: 12px 20px;
+    border-radius: 16px;
+    gap: 10px;
+    align-items: center;
+  }
+
+  nav h1 {
+    font-size: 17px;
+    justify-self: center;
+    text-align: center;
+  }
+
+  .nav-logo {
+    height: 38px;
+    margin-left: 0;
+    justify-self: start;
+  }
+
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
+  }
+
+  /* Menú desplegable móvil */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--gray-mid);
+    padding-top: 8px;
+    margin-top: 4px;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-item {
+    font-size: 14px;
+    padding: 12px 8px;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .nav-item::after {
+    display: none;
+  }
+
+  .nav-item:hover {
+    transform: none;
+    background: var(--gray-light);
+    border-radius: 8px;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 340px;
+    margin-top: 16px;
+    border-radius: 18px;
+  }
+
+  /* Canciones: 3 por fila con wrap */
+  #canciones {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .canciones {
+    flex: 1 1 calc(33.333% - 6px);
+    max-width: none;
+    min-width: 100px;
+  }
+
+  .canciones-btn {
+    font-size: 11px;
+    padding: 12px 6px;
+  }
+
+  /* VM */
+  .vm {
+    grid-template-columns: 1fr;
+    margin-top: 24px;
+    border-radius: 16px;
+  }
+
+  .vm-col {
+    padding: 32px 28px;
+  }
+
+  .vm-col:first-child {
+    border-right: none;
+    border-bottom: 1px solid var(--gray-mid);
+  }
+
+  /* Contacto */
+  .contacto {
+    flex-direction: column;
+    padding: 40px 24px;
+    gap: 28px;
+  }
+
+  .contacto-inner {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+  }
+
+  .contacto iframe {
+    width: 100%;
+    height: 320px;
+  }
+
+  /* Audios */
   .audios-page {
     padding: 16px;
     gap: 16px;
     border-radius: 16px;
+    margin-top: 24px;
   }
 
   .audios-search {
@@ -945,65 +1073,58 @@ footer a:hover::after {
   .audios-controls input[type="search"],
   #audio-search {
     max-width: 100%;
-    font-size: 15px; /* más cómodo en táctil */
+    font-size: 15px;
     padding: 12px 16px;
   }
 
-  .audio-list {
-    gap: 8px;
+  .audio-item h3 {
+    font-size: 15px;
   }
 
-  .vm {
-    grid-template-columns: 1fr;
+  .audio-item audio {
+    width: 100%;
   }
 
-  .vm-col:first-child {
-    border-right: none;
-    border-bottom: 1px solid var(--gray-mid);
-  }
-
-  .contacto {
-    flex-direction: column;
+  footer {
+    padding: 20px 24px;
   }
 }
 
-/* ── RESPONSIVE: 480px ── */
+/* ── 480px: móviles medianos ── */
 @media (max-width: 480px) {
+  html {
+    width: calc(100% - 12px);
+  }
+
   body {
-    padding: 5px;
-    padding-top: 85px;
+    padding: 6px;
+    padding-top: 82px;
   }
 
   header {
-    top: 5px;
-    width: calc(100% - 10px);
+    top: 6px;
+    width: calc(100% - 12px);
   }
 
   nav {
-    height: auto;
     min-height: 56px;
-    padding: 10px 16px;
-    border-radius: 12px;
-    grid-template-columns: 1fr;
-    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 14px;
   }
 
   .nav-logo {
-    height: 35px;
-    justify-self: center;
-    margin-left: 0;
+    height: 32px;
   }
 
   nav h1 {
-    font-size: 16px;
-    margin-top: 0;
+    font-size: 15px;
   }
 
+  /* Hero */
   .hero {
-    min-height: 260px;
-    height: auto;
-    margin-top: 12px;
-    border-radius: 16px;
+    min-height: 240px;
+    margin-top: 10px;
+    border-radius: 14px;
   }
 
   .hero-slide {
@@ -1014,29 +1135,83 @@ footer a:hover::after {
   .hero-arrow {
     width: 36px;
     height: 36px;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .hero-arrow.left {
-    left: 12px;
+    left: 10px;
   }
-
   .hero-arrow.right {
-    right: 12px;
+    right: 10px;
   }
 
   .hero-dots {
-    bottom: 12px;
+    bottom: 10px;
   }
+
+  /* Canciones: 2 por fila */
+  #canciones {
+    gap: 6px;
+  }
+
+  .canciones {
+    flex: 1 1 calc(50% - 4px);
+    max-width: none;
+  }
+
+  .canciones-btn {
+    font-size: 10px;
+    padding: 10px 4px;
+  }
+
+  /* VM */
+  .vm {
+    border-radius: 12px;
+  }
+
+  .vm-col {
+    padding: 24px 18px;
+  }
+
+  .vm-heading {
+    font-size: 15px;
+  }
+
+  .vm-text {
+    font-size: 13px;
+  }
+
+  /* Contacto */
+  .contacto {
+    padding: 28px 14px;
+    gap: 20px;
+    border-radius: 14px;
+  }
+
+  .contacto-inner {
+    padding: 20px 16px;
+  }
+
+  .contacto-title {
+    font-size: 17px;
+    margin-bottom: 28px;
+  }
+
+  .contacto iframe {
+    height: 260px;
+    border-radius: 14px;
+  }
+
+  /* Audios */
   .audios-page {
     padding: 12px;
     gap: 12px;
     border-radius: 12px;
-    margin-top: 12px;
+    margin-top: 10px;
   }
 
   .audios-search {
-    padding: 16px;
+    padding: 14px;
     gap: 10px;
     border-radius: 12px;
   }
@@ -1060,10 +1235,18 @@ footer a:hover::after {
 
   .audios-controls input[type="search"],
   #audio-search {
-    max-width: 100%;
     font-size: 16px; /* evita zoom automático en iOS */
     padding: 12px 14px;
     border-radius: 10px;
+  }
+
+  .audio-item {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+
+  .audio-item h3 {
+    font-size: 14px;
   }
 
   .media-preview {
@@ -1075,33 +1258,58 @@ footer a:hover::after {
     font-size: 12px;
   }
 
-  .vm-col {
-    padding: 24px 20px;
-  }
-
-  .contacto {
-    padding: 32px 16px;
-  }
-
-  .contacto-inner {
-    padding: 24px;
-  }
-
-  .contacto iframe {
-    width: 100%;
-    height: 280px;
-  }
-
   footer {
-    padding: 16px 20px;
+    padding: 14px 16px;
     font-size: 11px;
+    border-radius: 12px;
   }
 }
 
-/* ── RESPONSIVE: 360px (extra pequeño) ── */
+/* ── 360px: móviles pequeños ── */
 @media (max-width: 360px) {
+  body {
+    padding: 4px;
+    padding-top: 78px;
+  }
+
+  nav {
+    padding: 8px 10px;
+    border-radius: 12px;
+  }
+
+  .nav-logo {
+    height: 28px;
+  }
+
   nav h1 {
-    font-size: 14px;
+    font-size: 13px;
+  }
+
+  .hero {
+    min-height: 200px;
+    border-radius: 12px;
+  }
+
+  /* Canciones: también 2 por fila, más compactas */
+  .canciones {
+    flex: 1 1 calc(50% - 3px);
+  }
+
+  .canciones-btn {
+    font-size: 9px;
+    padding: 8px 2px;
+  }
+
+  .vm-col {
+    padding: 20px 14px;
+  }
+
+  .contacto {
+    padding: 20px 10px;
+  }
+
+  .contacto iframe {
+    height: 220px;
   }
 
   .audios-page {
@@ -1110,7 +1318,7 @@ footer a:hover::after {
   }
 
   .audios-search {
-    padding: 12px;
+    padding: 10px;
   }
 
   .audios-page h1,
@@ -1122,5 +1330,10 @@ footer a:hover::after {
   #audio-search {
     font-size: 15px;
     padding: 10px 12px;
+  }
+
+  footer {
+    padding: 12px;
+    font-size: 10px;
   }
 }
