@@ -469,10 +469,10 @@ nav h1:hover {
   list-style: decimal inside;
   color: var(--black);
   line-height: 1.8;
-  font-size: 14px;
 }
 
 .oraciones ol li {
+  font-size: 18px;
   margin-bottom: 16px;
   transition: color 0.3s ease;
 }
