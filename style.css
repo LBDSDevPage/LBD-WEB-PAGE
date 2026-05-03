@@ -15,7 +15,7 @@
   --gray-light: #f5f5f5;
   --gray-mid: #e0e0e0;
   --gray-dark: #d0d0d0;
-  --gray-text: #555555;
+  --gray-text: #2e2e2e;
   --gold: #f9dc5caa;
   --gold-light: #fef4d4;
   --accent: #efb710;
@@ -393,7 +393,8 @@ nav h1:hover {
   transition: box-shadow 0.3s ease;
 }
 
-.vm:hover {
+.vm:hover,
+.oraciones:hover {
   box-shadow: var(--shadow-md);
 }
 
@@ -432,6 +433,66 @@ nav h1:hover {
 
 .vm-col:hover .vm-text {
   color: var(--black);
+}
+
+/* ── ORACIONES ── */
+.oraciones {
+  background: var(--white);
+  padding: 40px 60px;
+  margin-top: 32px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gold-light);
+  transition: box-shadow 0.3s ease;
+}
+
+.oraciones:hover {
+  box-shadow: var(--shadow-gl);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.oraciones h2 {
+  font-family: var(--font-h);
+  font-size: 30px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--black);
+  margin-bottom: 36px;
+  text-align: center;
+  position: relative;
+  display: block; /* Ajustado para centrar mejor en el contenedor */
+}
+
+.oraciones ol {
+  list-style: decimal inside;
+  color: var(--black);
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.oraciones ol li {
+  margin-bottom: 16px;
+  transition: color 0.3s ease;
+}
+
+/* ── ESTILO PARA LA LISTA ANIDADA (SIERVO) ── */
+.oraciones ol ul {
+  list-style: none;
+  margin-top: 8px;
+  padding-left: 20px;
+  color: var(--gray-text);
+  font-family: var(--font-b);
+  font-size: 13px;
+}
+
+.oraciones ol ul li {
+  margin-bottom: 4px;
+}
+
+.oraciones ol ul li strong {
+  color: var(--black); /* Resalta las letras con el color de acento de la web */
 }
 
 /* ── CONTACTO ── */
