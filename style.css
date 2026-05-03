@@ -227,12 +227,16 @@ nav h1:hover {
 }
 
 .slide-1 {
-  background-image: url("./images/stile2.jpg");
+  background-image: url("./images/stile1.jpg");
 }
 .slide-2 {
   background-image: url("./images/stile3.jpg");
 }
 .slide-3 {
+  background-image: url("./images/stile2.jpg");
+}
+
+.slide-4 {
   background-image: url("./images/stile4.jpg");
 }
 
@@ -276,14 +280,14 @@ nav h1:hover {
 
 .hero-dots {
   position: absolute;
-  bottom: 20px;
+  bottom: 1px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.2);
+  gap: 12px;
+  background: rgba(135, 130, 130, 0.2);
   backdrop-filter: blur(8px);
-  padding: 8px 12px;
+  padding: 5px 12px;
   border-radius: 20px;
 }
 
