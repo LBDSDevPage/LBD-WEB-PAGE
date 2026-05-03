@@ -495,6 +495,41 @@ nav h1:hover {
   color: var(--black); /* Resalta las letras con el color de acento de la web */
 }
 
+.videos-tuto {
+  background: var(--white);
+  padding: 40px;
+  margin-top: 32px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-mid);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  transition: all 0.3s ease;
+}
+
+.videos-tuto:hover {
+  box-shadow: var(--shadow-gl);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.videos-tuto iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Mantiene la proporción del reproductor de video */
+  border-radius: 16px;
+  border: 1px solid var(--gray-mid);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.videos-tuto iframe:hover {
+  box-shadow: var(--shadow-md);
+  transform: scale(1.02);
+  border-color: var(--accent);
+}
+
 /* ── CONTACTO ── */
 .contacto {
   background: var(--white);
@@ -979,6 +1014,12 @@ footer a:hover::after {
     font-size: 12px;
     padding: 14px 8px;
   }
+
+  .videos-tuto {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    padding: 28px;
+  }
 }
 
 /* ── 768px: tablets portrait ── */
@@ -1097,6 +1138,23 @@ footer a:hover::after {
   .vm-col:first-child {
     border-right: none;
     border-bottom: 1px solid var(--gray-mid);
+  }
+
+  .oraciones {
+    padding: 28px 24px;
+    margin-top: 24px;
+  }
+
+  .oraciones h2 {
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+
+  .videos-tuto {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    margin-top: 24px;
+    gap: 16px;
   }
 
   /* Contacto */
@@ -1244,6 +1302,32 @@ footer a:hover::after {
 
   .vm-text {
     font-size: 13px;
+  }
+
+  .oraciones {
+    padding: 20px 16px;
+    border-radius: 14px;
+    margin-top: 18px;
+  }
+
+  .oraciones h2 {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
+  .oraciones ol {
+    font-size: 13px;
+  }
+
+  .videos-tuto {
+    padding: 14px;
+    border-radius: 14px;
+    margin-top: 18px;
+    gap: 12px;
+  }
+
+  .videos-tuto iframe {
+    border-radius: 12px;
   }
 
   /* Contacto */
