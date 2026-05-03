@@ -235,7 +235,6 @@ nav h1:hover {
 .slide-3 {
   background-image: url("./images/stile2.jpg");
 }
-
 .slide-4 {
   background-image: url("./images/stile4.jpg");
 }
@@ -462,7 +461,7 @@ nav h1:hover {
   margin-bottom: 36px;
   text-align: center;
   position: relative;
-  display: block; /* Ajustado para centrar mejor en el contenedor */
+  display: block;
 }
 
 .oraciones ol {
@@ -492,9 +491,10 @@ nav h1:hover {
 }
 
 .oraciones ol ul li strong {
-  color: var(--black); /* Resalta las letras con el color de acento de la web */
+  color: var(--black);
 }
 
+/* ── VIDEOS TUTORIALES ── */
 .videos-tuto {
   background: var(--white);
   padding: 40px;
@@ -514,10 +514,29 @@ nav h1:hover {
   transform: translateY(-2px);
 }
 
+/* ── TÍTULOS DE CATEGORÍA ── */
+.videos-tuto h3 {
+  grid-column: 1 / -1;
+  font-family: var(--font-h);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--black);
+  margin-top: 16px;
+  margin-bottom: 4px;
+  border-bottom: 2px solid var(--gold-light);
+  padding-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.videos-tuto h3:first-of-type {
+  margin-top: 0;
+}
+
 .videos-tuto iframe {
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9; /* Mantiene la proporción del reproductor de video */
+  aspect-ratio: 16 / 9;
   border-radius: 16px;
   border: 1px solid var(--gray-mid);
   box-shadow: var(--shadow-sm);
@@ -528,6 +547,41 @@ nav h1:hover {
   box-shadow: var(--shadow-md);
   transform: scale(1.02);
   border-color: var(--accent);
+}
+
+/* ── RESPONSIVE PARA VIDEOS ── */
+@media (max-width: 1024px) {
+  .videos-tuto {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    padding: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .videos-tuto {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    margin-top: 24px;
+    gap: 16px;
+  }
+
+  .videos-tuto h3 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .videos-tuto {
+    padding: 14px;
+    border-radius: 14px;
+    margin-top: 18px;
+    gap: 12px;
+  }
+
+  .videos-tuto iframe {
+    border-radius: 12px;
+  }
 }
 
 /* ── CONTACTO ── */
@@ -1033,7 +1087,6 @@ footer a:hover::after {
     padding-top: 90px;
   }
 
-  /* Nav: ocultar links, mostrar toggle */
   header {
     top: 8px;
     width: calc(100% - 16px);
@@ -1068,7 +1121,6 @@ footer a:hover::after {
     justify-self: end;
   }
 
-  /* Menú desplegable móvil */
   .nav-links {
     display: none;
     flex-direction: column;
@@ -1100,14 +1152,12 @@ footer a:hover::after {
     border-radius: 8px;
   }
 
-  /* Hero */
   .hero {
     min-height: 340px;
     margin-top: 16px;
     border-radius: 18px;
   }
 
-  /* Canciones: 3 por fila con wrap */
   #canciones {
     flex-wrap: wrap;
     gap: 8px;
@@ -1124,7 +1174,6 @@ footer a:hover::after {
     padding: 12px 6px;
   }
 
-  /* VM */
   .vm {
     grid-template-columns: 1fr;
     margin-top: 24px;
@@ -1157,7 +1206,6 @@ footer a:hover::after {
     gap: 16px;
   }
 
-  /* Contacto */
   .contacto {
     flex-direction: column;
     padding: 40px 24px;
@@ -1175,7 +1223,6 @@ footer a:hover::after {
     height: 320px;
   }
 
-  /* Audios */
   .audios-page {
     padding: 16px;
     gap: 16px;
@@ -1243,7 +1290,6 @@ footer a:hover::after {
     font-size: 15px;
   }
 
-  /* Hero */
   .hero {
     min-height: 240px;
     margin-top: 10px;
@@ -1272,7 +1318,6 @@ footer a:hover::after {
     bottom: 10px;
   }
 
-  /* Canciones: 2 por fila */
   #canciones {
     gap: 6px;
   }
@@ -1287,7 +1332,6 @@ footer a:hover::after {
     padding: 10px 4px;
   }
 
-  /* VM */
   .vm {
     border-radius: 12px;
   }
@@ -1330,7 +1374,6 @@ footer a:hover::after {
     border-radius: 12px;
   }
 
-  /* Contacto */
   .contacto {
     padding: 28px 14px;
     gap: 20px;
@@ -1351,7 +1394,6 @@ footer a:hover::after {
     border-radius: 14px;
   }
 
-  /* Audios */
   .audios-page {
     padding: 12px;
     gap: 12px;
@@ -1384,7 +1426,7 @@ footer a:hover::after {
 
   .audios-controls input[type="search"],
   #audio-search {
-    font-size: 16px; /* evita zoom automático en iOS */
+    font-size: 16px;
     padding: 12px 14px;
     border-radius: 10px;
   }
@@ -1439,7 +1481,6 @@ footer a:hover::after {
     border-radius: 12px;
   }
 
-  /* Canciones: también 2 por fila, más compactas */
   .canciones {
     flex: 1 1 calc(50% - 3px);
   }
