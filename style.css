@@ -439,7 +439,7 @@ nav h1:hover {
 .oraciones {
   background: var(--white);
   padding: 40px 60px;
-  margin-top: 32px;
+  margin-top: 10px;
   border-radius: 20px;
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--gold-light);
